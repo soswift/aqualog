@@ -1,6 +1,6 @@
 # file directory
-path = "/home/sane/Documents/Bioinformatics/Projects/Redhill/data/20211217"
-run_name = "round_2"
+path = "path"
+run_name = "round_3"
 
 # set working directory
 setwd(path)
