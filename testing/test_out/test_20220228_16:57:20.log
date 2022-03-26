@@ -1,0 +1,117 @@
+Reading data files in directory: ~/Documents/Bioinformatics/Projects/Redhill/processing/scripts/testing/
+ [1] "Reading data files in directory: ~/Documents/Bioinformatics/Projects/Redhill/data/fdom_runs/20211217/"
+ [2] "Reading in sample key"                                                                                
+ [3] "Blanks detected in sample key = 5"                                                                    
+ [4] "Total N samples = 33"                                                                                 
+ [5] "Total N groups = 5"                                                                                   
+ [6] "Total N blanks  = 5"                                                                                  
+ [7] "N samples in each group = 7"                                                                          
+ [8] "N samples in last group = 5"                                                                          
+ [9] "Absorbance files detected, including absorbance data and IFE correction"                              
+[10] "writing out sample_sheet as: test_sample_sheet.csv"                                                   
+[11] "extracting EEM data from files"                                                                       
+[12] "[1] \"Good. All SEM files exist.\""                                                                   
+[13] "Absorbance (ABS) files detected, reading absorbance data"                                             
+[14] "calculating Raman Areas"                                                                              
+[15] "performing Inner Filter Correction"                                                                   
+[16] "performing Raman scaling"                                                                             
+[17] "performing Rayleigh scatter subtraction"                                                              
+[18] "writing out cleaned EEM files to directory processed_data > processed_matrices"                       
+[19] "calculating indices"                                                                                  
+[20] "index calculated:  CobleA"                                                                            
+[21] "index calculated:  CobleB"                                                                            
+[22] "index calculated:  CobleC"                                                                            
+[23] "index calculated:  CobleM"                                                                            
+[24] "index calculated:  CobleT"                                                                            
+[25] "index calculated:  Fpeak"                                                                             
+[26] "index calculated:  Stedmon_D"                                                                         
+[27] "index calculated:  Optical_Brighteners"                                                               
+[28] "index calculated:  dieselBandII"                                                                      
+[29] "index calculated:  Petroleum"                                                                         
+[30] "index calculated:  Lignin"                                                                            
+[31] "index calculated:  BIX"                                                                               
+[32] "index calculated:  HIX"                                                                               
+[33] "index calculated:  FI"                                                                                
+[34] "index calculated:  M_to_C"                                                                            
+[35] "index calculated:  JP5_empirical"                                                                     
+[36] "index calculated:  JP5_normalized"                                                                    
+[37] "index calculated:  Diesel_Chen"                                                                       
+[38] "writing out indices to processed_data > fDOM_indices_out.csv"                                         
+[39] "DONE: indices written out to test_fDOM_indices_out.csv"                                               
+Samples in sheet =  33 indices =  33 eems =  34 for run test
+[1] "Aqualog Parameters"
+Slitwidth
+5
+ExStart
+240
+ExEnd
+500
+ExStep
+5
+EmStart
+248
+EmEnd
+824.6
+EmStep
+4.65
+Samples in sheet =  33 indices =  33 eems =  34 for run test
+[1] "Aqualog Parameters"
+Slitwidth
+5
+ExStart
+240
+ExEnd
+500
+ExStep
+5
+EmStart
+248
+EmEnd
+824.6
+EmStep
+4.65
+Samples in sheet =  33 indices =  33 eems =  34 for run test
+[1] "/home/sane/Documents/Bioinformatics/Projects/Redhill/processing/scripts/testing"
+ [1] "all_data"            "collection_code"     "collection_id"       "compile_runs"        "compiled_out_dir"   
+ [6] "cor_em"              "correct_EEMs"        "data_dir"            "data_directory"      "eem_p"              
+[11] "eems"                "Em"                  "Em_range"            "EmEnd"               "EmStart"            
+[16] "EmStep"              "Ex"                  "Ex_range"            "ExEnd"               "ExStart"            
+[21] "ExStep"              "fdom_indices"        "groups"              "i"                   "indices_file"       
+[26] "inds"                "indx"                "jp5_annotation"      "jp5_severity_plot"   "jp5_value"          
+[31] "key"                 "log_file"            "logtime"             "main"                "nelson_id"          
+[36] "org_d"               "organize_aqualog"    "out_dir"             "out_path"            "outdir"             
+[41] "p"                   "params"              "plot_eem"            "proc_file"           "proc_run_dir"       
+[46] "procd_data_dir"      "process_aqualog"     "read_processed_data" "run"                 "run_file"           
+[51] "run_name"            "run_path"            "runs"                "sample_id"           "sample_sheet"       
+[56] "sample_sheet_file"   "samples"             "SEM_files"           "sev_p"               "Slitwidth"          
+[61] "std_curve"           "std_curve_file"      "test_dir"            "test_out"            "tmp"                
+function (file = NULL, append = FALSE, type = c("output", "message"), 
+    split = FALSE) 
+{
+    type <- match.arg(type)
+    if (type == "message") {
+        if (is.null(file)) 
+            file <- stderr()
+        else if (!inherits(file, "connection") || !isOpen(file)) 
+            stop("'file' must be NULL or an already open connection")
+        if (split) 
+            stop("cannot split the message connection")
+        .Internal(sink(file, FALSE, TRUE, FALSE))
+    }
+    else {
+        closeOnExit <- FALSE
+        if (is.null(file)) 
+            file <- -1L
+        else if (is.character(file)) {
+            file <- file(file, if (append) 
+                "a"
+            else "w")
+            closeOnExit <- TRUE
+        }
+        else if (!inherits(file, "connection")) 
+            stop("'file' must be NULL, a connection or a character string")
+        .Internal(sink(file, closeOnExit, FALSE, split))
+    }
+}
+<bytecode: 0x562671949e70>
+<environment: namespace:base>

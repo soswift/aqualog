@@ -1,0 +1,67 @@
+############################################################################################
+Log File: C:\Users\Public\Documents\Aqualog\Data\Quinlan\Wailupe_sept8\AqualogSampleQLog.txt
+Date: Sunday, April 10, 2016
+Time: 12:33:02 PM
+############################################################################################
+[2016-04-10 12-33-02] 
+Aqualog Sample Q Experimental Parameters:
+[Aqualog Sample Q File] C:\Users\Public\Documents\Aqualog\Data\Quinlan\Wailupe_sept8\AqualogSampleQ.aqu
+[Aqualog Experiment File] C:\Users\Public\Documents\Aqualog\Data\Quinlan\fdom\quinlan.fdom.10.23.15.settings.xml
+[Output Destination Folder] C:\Users\Public\Documents\Aqualog\Data\Quinlan\Wailupe_sept8\
+
+Output File Names:
+[Blank Group Prefix] Group
+[Blank File Base] Blank
+[Sample Prefix] Sample
+
+Blank & Sample Setup:
+[Blank Group Count] 4
+[Blank Group Start] 1
+[Samples Per Blank] 5
+[Blank Group Start] 1
+[Total Number of Blanks & Samples] 24
+
+Post Prossessing Options:
+
+Export Options:
+ASCII = True
+ABS = True
+BEM = True
+SEM = True
+
+Delay Options:
+Single Cell Kinetics = False
+Delay Before First Blank = 0 Seconds
+Delay Between Each Experiment = 0 Seconds
+
+Starting (Run/Resume) Position:
+[Blank Start Index] 0
+[Sample Start Index] 0
+################################################################################
+[2016-04-10 12-33-02] STARTING Aqualog SampleQ Execution
+[2016-04-10 12-34-28] Experiment 01 of 24 [Blank 000, Sample 0000] [Files: Group001Blank*] Start Done
+[2016-04-10 12-38-27] Experiment 02 of 24 [Blank 000, Sample 0001] [Files: Group001Sample0001*] Start Done
+[2016-04-10 12-44-36] Experiment 03 of 24 [Blank 000, Sample 0002] [Files: Group001Sample0002*] Start Done
+[2016-04-10 12-48-43] Experiment 04 of 24 [Blank 000, Sample 0003] [Files: Group001Sample0003*] Start Done
+[2016-04-10 12-53-04] Experiment 05 of 24 [Blank 000, Sample 0004] [Files: Group001Sample0004*] Start Done
+[2016-04-10 12-57-04] Experiment 06 of 24 [Blank 000, Sample 0005] [Files: Group001Sample0005*] Start Done
+[2016-04-10 13-01-33] Experiment 07 of 24 [Blank 001, Sample 0000] [Files: Group002Blank*] Start Done
+[2016-04-10 13-05-31] Experiment 08 of 24 [Blank 001, Sample 0001] [Files: Group002Sample0001*] Start Done
+[2016-04-10 13-10-11] Experiment 09 of 24 [Blank 001, Sample 0002] [Files: Group002Sample0002*] Start Done
+[2016-04-10 13-14-12] Experiment 10 of 24 [Blank 001, Sample 0003] [Files: Group002Sample0003*] Start Done
+[2016-04-10 13-18-53] Experiment 11 of 24 [Blank 001, Sample 0004] [Files: Group002Sample0004*] Start Done
+[2016-04-10 13-22-55] Experiment 12 of 24 [Blank 001, Sample 0005] [Files: Group002Sample0005*] Start Done
+[2016-04-10 13-28-37] Experiment 13 of 24 [Blank 002, Sample 0000] [Files: Group003Blank*] Start Done
+[2016-04-10 13-32-35] Experiment 14 of 24 [Blank 002, Sample 0001] [Files: Group003Sample0001*] Start Done
+[2016-04-10 13-36-58] Experiment 15 of 24 [Blank 002, Sample 0002] [Files: Group003Sample0002*] Start Done
+[2016-04-10 13-40-59] Experiment 16 of 24 [Blank 002, Sample 0003] [Files: Group003Sample0003*] Start Done
+[2016-04-10 13-45-17] Experiment 17 of 24 [Blank 002, Sample 0004] [Files: Group003Sample0004*] Start Done
+[2016-04-10 13-49-18] Experiment 18 of 24 [Blank 002, Sample 0005] [Files: Group003Sample0005*] Start Done
+[2016-04-10 13-54-02] Experiment 19 of 24 [Blank 003, Sample 0000] [Files: Group004Blank*] Start Done
+[2016-04-10 13-58-01] Experiment 20 of 24 [Blank 003, Sample 0001] [Files: Group004Sample0001*] Start Done
+[2016-04-10 14-03-22] Experiment 21 of 24 [Blank 003, Sample 0002] [Files: Group004Sample0002*] Start Done
+[2016-04-10 14-07-23] Experiment 22 of 24 [Blank 003, Sample 0003] [Files: Group004Sample0003*] Start Done
+[2016-04-10 14-11-47] Experiment 23 of 24 [Blank 003, Sample 0004] [Files: Group004Sample0004*] Start Done
+[2016-04-10 14-15-49] Experiment 24 of 24 [Blank 003, Sample 0005] [Files: Group004Sample0005*] Start Done
+[2016-04-10 14-26-13] COMPLETED Aqualog SampleQ Execution
+--------------------------------------------------------------------------------

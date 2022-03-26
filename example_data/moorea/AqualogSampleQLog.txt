@@ -1,0 +1,168 @@
+######################################################################################
+Log File: C:\Users\Public\Documents\Aqualog\Data\Rippee\6Dec2021\AqualogSampleQLog.txt
+Date: Monday, December 06, 2021
+Time: 10:17:29 AM
+######################################################################################
+[2021-12-06 10-17-29] 
+Aqualog Sample Q Experimental Parameters:
+[Aqualog Sample Q File] C:\Users\Public\Documents\Aqualog\Data\Rippee\6Dec2021\AqualogSampleQ.aqu
+[Aqualog Experiment File] C:\Users\Public\Documents\Aqualog\Data\Rippee\6Dec2021\Rippee_MooreaVarari_SampleQ.xml
+[Output Destination Folder] C:\Users\Public\Documents\Aqualog\Data\Rippee\6Dec2021\
+
+Output File Names:
+[Blank Group Prefix] Group
+[Blank File Base] Blank
+[Sample Prefix] Sample
+
+Blank & Sample Setup:
+[Blank Group Count] 16
+[Blank Group Start] 1
+[Samples Per Blank] 7
+[Blank Group Start] 1
+[Total Number of Blanks & Samples] 128
+
+Post Prossessing Options:
+
+Export Options:
+ASCII = True
+ABS = True
+BEM = True
+SEM = True
+
+Delay Options:
+Single Cell Kinetics = False
+Delay Before First Blank = 0 Seconds
+Delay Between Each Experiment = 0 Seconds
+
+Starting (Run/Resume) Position:
+[Blank Start Index] 0
+[Sample Start Index] 0
+################################################################################
+[2021-12-06 10-17-29] STARTING Aqualog SampleQ Execution
+[2021-12-06 10-24-02] Experiment 01 of 128 [Blank 000, Sample 0000] [Files: Group001Blank*] Start Done
+[2021-12-06 10-28-01] Experiment 02 of 128 [Blank 000, Sample 0001] [Files: Group001Sample0001*] Start Done
+[2021-12-06 10-32-58] Experiment 03 of 128 [Blank 000, Sample 0002] [Files: Group001Sample0002*] Start Done
+[2021-12-06 10-37-04] Experiment 04 of 128 [Blank 000, Sample 0003] [Files: Group001Sample0003*] Start Done
+[2021-12-06 10-41-47] Experiment 05 of 128 [Blank 000, Sample 0004] [Files: Group001Sample0004*] Start Done
+[2021-12-06 10-45-53] Experiment 06 of 128 [Blank 000, Sample 0005] [Files: Group001Sample0005*] Start Done
+[2021-12-06 10-50-29] Experiment 07 of 128 [Blank 000, Sample 0006] [Files: Group001Sample0006*] Start Done
+[2021-12-06 10-54-35] Experiment 08 of 128 [Blank 000, Sample 0007] [Files: Group001Sample0007*] Start Done
+[2021-12-06 10-59-27] Experiment 09 of 128 [Blank 001, Sample 0000] [Files: Group002Blank*] Start Done
+[2021-12-06 11-03-28] Experiment 10 of 128 [Blank 001, Sample 0001] [Files: Group002Sample0001*] Start Done
+[2021-12-06 11-08-46] Experiment 11 of 128 [Blank 001, Sample 0002] [Files: Group002Sample0002*] Start Done
+[2021-12-06 11-12-53] Experiment 12 of 128 [Blank 001, Sample 0003] [Files: Group002Sample0003*] Start Done
+[2021-12-06 11-17-43] Experiment 13 of 128 [Blank 001, Sample 0004] [Files: Group002Sample0004*] Start Done
+[2021-12-06 11-21-49] Experiment 14 of 128 [Blank 001, Sample 0005] [Files: Group002Sample0005*] Start Done
+[2021-12-06 11-26-38] Experiment 15 of 128 [Blank 001, Sample 0006] [Files: Group002Sample0006*] Start Done
+[2021-12-06 11-30-45] Experiment 16 of 128 [Blank 001, Sample 0007] [Files: Group002Sample0007*] Start Done
+[2021-12-06 11-35-30] Experiment 17 of 128 [Blank 002, Sample 0000] [Files: Group003Blank*] Start Done
+[2021-12-06 11-39-30] Experiment 18 of 128 [Blank 002, Sample 0001] [Files: Group003Sample0001*] Start Done
+[2021-12-06 11-44-22] Experiment 19 of 128 [Blank 002, Sample 0002] [Files: Group003Sample0002*] Start Done
+[2021-12-06 11-48-29] Experiment 20 of 128 [Blank 002, Sample 0003] [Files: Group003Sample0003*] Start Done
+[2021-12-06 11-53-12] Experiment 21 of 128 [Blank 002, Sample 0004] [Files: Group003Sample0004*] Start Done
+[2021-12-06 11-57-18] Experiment 22 of 128 [Blank 002, Sample 0005] [Files: Group003Sample0005*] Start Done
+[2021-12-06 12-02-05] Experiment 23 of 128 [Blank 002, Sample 0006] [Files: Group003Sample0006*] Start Done
+[2021-12-06 12-06-11] Experiment 24 of 128 [Blank 002, Sample 0007] [Files: Group003Sample0007*] Start Done
+[2021-12-06 12-10-52] Experiment 25 of 128 [Blank 003, Sample 0000] [Files: Group004Blank*] Start Done
+[2021-12-06 12-14-50] Experiment 26 of 128 [Blank 003, Sample 0001] [Files: Group004Sample0001*] Start Done
+[2021-12-06 12-19-33] Experiment 27 of 128 [Blank 003, Sample 0002] [Files: Group004Sample0002*] Start Done
+[2021-12-06 12-23-34] Experiment 28 of 128 [Blank 003, Sample 0003] [Files: Group004Sample0003*] Start Done
+[2021-12-06 12-28-11] Experiment 29 of 128 [Blank 003, Sample 0004] [Files: Group004Sample0004*] Start Done
+[2021-12-06 12-32-12] Experiment 30 of 128 [Blank 003, Sample 0005] [Files: Group004Sample0005*] Start Done
+[2021-12-06 12-36-48] Experiment 31 of 128 [Blank 003, Sample 0006] [Files: Group004Sample0006*] Start Done
+[2021-12-06 12-40-55] Experiment 32 of 128 [Blank 003, Sample 0007] [Files: Group004Sample0007*] Start Done
+[2021-12-06 12-45-44] Experiment 33 of 128 [Blank 004, Sample 0000] [Files: Group005Blank*] Start Done
+[2021-12-06 12-49-45] Experiment 34 of 128 [Blank 004, Sample 0001] [Files: Group005Sample0001*] Start Done
+[2021-12-06 12-54-30] Experiment 35 of 128 [Blank 004, Sample 0002] [Files: Group005Sample0002*] Start Done
+[2021-12-06 12-58-36] Experiment 36 of 128 [Blank 004, Sample 0003] [Files: Group005Sample0003*] Start Done
+[2021-12-06 13-03-30] Experiment 37 of 128 [Blank 004, Sample 0004] [Files: Group005Sample0004*] Start Done
+[2021-12-06 13-07-37] Experiment 38 of 128 [Blank 004, Sample 0005] [Files: Group005Sample0005*] Start Done
+[2021-12-06 13-13-08] Experiment 39 of 128 [Blank 004, Sample 0006] [Files: Group005Sample0006*] Start Done
+[2021-12-06 13-17-09] Experiment 40 of 128 [Blank 004, Sample 0007] [Files: Group005Sample0007*] Start Done
+[2021-12-06 13-22-11] Experiment 41 of 128 [Blank 005, Sample 0000] [Files: Group006Blank*] Start Done
+[2021-12-06 13-26-10] Experiment 42 of 128 [Blank 005, Sample 0001] [Files: Group006Sample0001*] Start Done
+[2021-12-06 13-30-44] Experiment 43 of 128 [Blank 005, Sample 0002] [Files: Group006Sample0002*] Start Done
+[2021-12-06 13-34-45] Experiment 44 of 128 [Blank 005, Sample 0003] [Files: Group006Sample0003*] Start Done
+[2021-12-06 13-39-36] Experiment 45 of 128 [Blank 005, Sample 0004] [Files: Group006Sample0004*] Start Done
+[2021-12-06 13-43-42] Experiment 46 of 128 [Blank 005, Sample 0005] [Files: Group006Sample0005*] Start Done
+[2021-12-06 13-48-10] Experiment 47 of 128 [Blank 005, Sample 0006] [Files: Group006Sample0006*] Start Done
+[2021-12-06 13-52-17] Experiment 48 of 128 [Blank 005, Sample 0007] [Files: Group006Sample0007*] Start Done
+[2021-12-06 14-08-25] Experiment 49 of 128 [Blank 006, Sample 0000] [Files: Group007Blank*] Start Done
+[2021-12-06 14-12-24] Experiment 50 of 128 [Blank 006, Sample 0001] [Files: Group007Sample0001*] Start Done
+[2021-12-06 14-16-41] Experiment 51 of 128 [Blank 006, Sample 0002] [Files: Group007Sample0002*] Start Done
+[2021-12-06 14-20-48] Experiment 52 of 128 [Blank 006, Sample 0003] [Files: Group007Sample0003*] Start Done
+[2021-12-06 14-25-26] Experiment 53 of 128 [Blank 006, Sample 0004] [Files: Group007Sample0004*] Start Done
+[2021-12-06 14-29-27] Experiment 54 of 128 [Blank 006, Sample 0005] [Files: Group007Sample0005*] Start Done
+[2021-12-06 14-34-03] Experiment 55 of 128 [Blank 006, Sample 0006] [Files: Group007Sample0006*] Start Done
+[2021-12-06 14-38-09] Experiment 56 of 128 [Blank 006, Sample 0007] [Files: Group007Sample0007*] Start Done
+[2021-12-06 14-42-43] Experiment 57 of 128 [Blank 007, Sample 0000] [Files: Group008Blank*] Start Done
+[2021-12-06 14-46-43] Experiment 58 of 128 [Blank 007, Sample 0001] [Files: Group008Sample0001*] Start Done
+[2021-12-06 14-51-19] Experiment 59 of 128 [Blank 007, Sample 0002] [Files: Group008Sample0002*] Start Done
+[2021-12-06 14-55-26] Experiment 60 of 128 [Blank 007, Sample 0003] [Files: Group008Sample0003*] Start Done
+[2021-12-06 15-00-11] Experiment 61 of 128 [Blank 007, Sample 0004] [Files: Group008Sample0004*] Start Done
+[2021-12-06 15-04-18] Experiment 62 of 128 [Blank 007, Sample 0005] [Files: Group008Sample0005*] Start Done
+[2021-12-06 15-08-57] Experiment 63 of 128 [Blank 007, Sample 0006] [Files: Group008Sample0006*] Start Done
+[2021-12-06 15-12-58] Experiment 64 of 128 [Blank 007, Sample 0007] [Files: Group008Sample0007*] Start Done
+[2021-12-06 15-17-33] Experiment 65 of 128 [Blank 008, Sample 0000] [Files: Group009Blank*] Start Done
+[2021-12-06 15-21-31] Experiment 66 of 128 [Blank 008, Sample 0001] [Files: Group009Sample0001*] Start Done
+[2021-12-06 15-25-53] Experiment 67 of 128 [Blank 008, Sample 0002] [Files: Group009Sample0002*] Start Done
+[2021-12-06 15-30-00] Experiment 68 of 128 [Blank 008, Sample 0003] [Files: Group009Sample0003*] Start Done
+[2021-12-06 15-34-33] Experiment 69 of 128 [Blank 008, Sample 0004] [Files: Group009Sample0004*] Start Done
+[2021-12-06 15-38-40] Experiment 70 of 128 [Blank 008, Sample 0005] [Files: Group009Sample0005*] Start Done
+[2021-12-06 15-43-15] Experiment 71 of 128 [Blank 008, Sample 0006] [Files: Group009Sample0006*] Start Done
+[2021-12-06 15-47-22] Experiment 72 of 128 [Blank 008, Sample 0007] [Files: Group009Sample0007*] Start Done
+[2021-12-06 15-52-10] Experiment 73 of 128 [Blank 009, Sample 0000] [Files: Group010Blank*] Start Done
+[2021-12-06 15-56-08] Experiment 74 of 128 [Blank 009, Sample 0001] [Files: Group010Sample0001*] Start Done
+[2021-12-06 16-00-38] Experiment 75 of 128 [Blank 009, Sample 0002] [Files: Group010Sample0002*] Start Done
+[2021-12-06 16-04-39] Experiment 76 of 128 [Blank 009, Sample 0003] [Files: Group010Sample0003*] Start Done
+[2021-12-06 16-09-24] Experiment 77 of 128 [Blank 009, Sample 0004] [Files: Group010Sample0004*] Start Done
+[2021-12-06 16-13-25] Experiment 78 of 128 [Blank 009, Sample 0005] [Files: Group010Sample0005*] Start Done
+[2021-12-06 16-17-58] Experiment 79 of 128 [Blank 009, Sample 0006] [Files: Group010Sample0006*] Start Done
+[2021-12-06 16-22-04] Experiment 80 of 128 [Blank 009, Sample 0007] [Files: Group010Sample0007*] Start Done
+[2021-12-06 16-27-55] Experiment 81 of 128 [Blank 010, Sample 0000] [Files: Group011Blank*] Start Done
+[2021-12-06 16-31-55] Experiment 82 of 128 [Blank 010, Sample 0001] [Files: Group011Sample0001*] Start Done
+[2021-12-06 16-36-31] Experiment 83 of 128 [Blank 010, Sample 0002] [Files: Group011Sample0002*] Start Done
+[2021-12-06 16-40-33] Experiment 84 of 128 [Blank 010, Sample 0003] [Files: Group011Sample0003*] Start Done
+[2021-12-06 16-44-57] Experiment 85 of 128 [Blank 010, Sample 0004] [Files: Group011Sample0004*] Start Done
+[2021-12-06 16-48-58] Experiment 86 of 128 [Blank 010, Sample 0005] [Files: Group011Sample0005*] Start Done
+[2021-12-06 16-53-45] Experiment 87 of 128 [Blank 010, Sample 0006] [Files: Group011Sample0006*] Start Done
+[2021-12-06 16-57-46] Experiment 88 of 128 [Blank 010, Sample 0007] [Files: Group011Sample0007*] Start Done
+[2021-12-06 17-02-27] Experiment 89 of 128 [Blank 011, Sample 0000] [Files: Group012Blank*] Start Done
+[2021-12-06 17-06-27] Experiment 90 of 128 [Blank 011, Sample 0001] [Files: Group012Sample0001*] Start Done
+[2021-12-06 17-11-11] Experiment 91 of 128 [Blank 011, Sample 0002] [Files: Group012Sample0002*] Start Done
+[2021-12-06 17-15-18] Experiment 92 of 128 [Blank 011, Sample 0003] [Files: Group012Sample0003*] Start Done
+[2021-12-06 17-20-04] Experiment 93 of 128 [Blank 011, Sample 0004] [Files: Group012Sample0004*] Start Done
+[2021-12-06 17-24-11] Experiment 94 of 128 [Blank 011, Sample 0005] [Files: Group012Sample0005*] Start Done
+[2021-12-06 17-28-45] Experiment 95 of 128 [Blank 011, Sample 0006] [Files: Group012Sample0006*] Start Done
+[2021-12-06 17-32-51] Experiment 96 of 128 [Blank 011, Sample 0007] [Files: Group012Sample0007*] Start Done
+[2021-12-06 17-37-37] Experiment 97 of 128 [Blank 012, Sample 0000] [Files: Group013Blank*] Start Done
+[2021-12-06 17-41-37] Experiment 98 of 128 [Blank 012, Sample 0001] [Files: Group013Sample0001*] Start Done
+[2021-12-06 17-46-22] Experiment 99 of 128 [Blank 012, Sample 0002] [Files: Group013Sample0002*] Start Done
+[2021-12-06 17-50-28] Experiment 100 of 128 [Blank 012, Sample 0003] [Files: Group013Sample0003*] Start Done
+[2021-12-06 17-55-16] Experiment 101 of 128 [Blank 012, Sample 0004] [Files: Group013Sample0004*] Start Done
+[2021-12-06 17-59-23] Experiment 102 of 128 [Blank 012, Sample 0005] [Files: Group013Sample0005*] Start Done
+[2021-12-06 18-05-39] Experiment 103 of 128 [Blank 012, Sample 0006] [Files: Group013Sample0006*] Start Done
+[2021-12-06 18-09-45] Experiment 104 of 128 [Blank 012, Sample 0007] [Files: Group013Sample0007*] Start Done
+[2021-12-06 18-15-02] Experiment 105 of 128 [Blank 013, Sample 0000] [Files: Group014Blank*] Start Done
+[2021-12-06 18-19-02] Experiment 106 of 128 [Blank 013, Sample 0001] [Files: Group014Sample0001*] Start Done
+[2021-12-06 18-23-47] Experiment 107 of 128 [Blank 013, Sample 0002] [Files: Group014Sample0002*] Start Done
+[2021-12-06 18-27-54] Experiment 108 of 128 [Blank 013, Sample 0003] [Files: Group014Sample0003*] Start Done
+[2021-12-06 18-33-02] Experiment 109 of 128 [Blank 013, Sample 0004] [Files: Group014Sample0004*] Start Done
+[2021-12-06 18-37-03] Experiment 110 of 128 [Blank 013, Sample 0005] [Files: Group014Sample0005*] Start Done
+[2021-12-06 18-49-44] Experiment 111 of 128 [Blank 013, Sample 0006] [Files: Group014Sample0006*] Start Done
+[2021-12-06 18-53-50] Experiment 112 of 128 [Blank 013, Sample 0007] [Files: Group014Sample0007*] Start Done
+[2021-12-06 18-58-37] Experiment 113 of 128 [Blank 014, Sample 0000] [Files: Group015Blank*] Start Done
+[2021-12-06 19-02-38] Experiment 114 of 128 [Blank 014, Sample 0001] [Files: Group015Sample0001*] Start Done
+[2021-12-06 19-07-53] Experiment 115 of 128 [Blank 014, Sample 0002] [Files: Group015Sample0002*] Start Done
+[2021-12-06 19-12-00] Experiment 116 of 128 [Blank 014, Sample 0003] [Files: Group015Sample0003*] Start Done
+[2021-12-06 19-16-39] Experiment 117 of 128 [Blank 014, Sample 0004] [Files: Group015Sample0004*] Start Done
+[2021-12-06 19-20-46] Experiment 118 of 128 [Blank 014, Sample 0005] [Files: Group015Sample0005*] Start Done
+[2021-12-06 19-25-23] Experiment 119 of 128 [Blank 014, Sample 0006] [Files: Group015Sample0006*] Start Done
+[2021-12-06 19-29-24] Experiment 120 of 128 [Blank 014, Sample 0007] [Files: Group015Sample0007*] Start Done
+[2021-12-06 19-34-05] Experiment 121 of 128 [Blank 015, Sample 0000] [Files: Group016Blank*] Start Done
+[2021-12-06 19-38-04] Experiment 122 of 128 [Blank 015, Sample 0001] [Files: Group016Sample0001*] Start Done
+[2021-12-06 19-42-35] Experiment 123 of 128 [Blank 015, Sample 0002] [Files: Group016Sample0002*] Start Done
+[2021-12-06 19-46-42] Experiment 124 of 128 [Blank 015, Sample 0003] [Files: Group016Sample0003*] Start Done
+[2021-12-06 19-51-35] Experiment 125 of 128 [Blank 015, Sample 0004] [Files: Group016Sample0004*] Start Done
+[2021-12-06 19-55-41] Experiment 126 of 128 [Blank 015, Sample 0005] [Files: Group016Sample0005*] Start Done
+[2021-12-06 20-00-38] USER CANCELED Aqualog SampleQ Execution

@@ -1,0 +1,39 @@
+Reading data files in directory: ~/Documents/Bioinformatics/Projects/Redhill/processing/scripts/example_data/Wailupe_sept8/
+Reading in sample key
+Blanks detected in sample key = 4
+Total N samples = 20
+Total N groups = 4
+Total N blanks  = 4
+N samples in each group = 5
+N samples in last group = 5
+Absorbance files detected, including absorbance data and IFE correction
+writing out sample_sheet as: test_sample_sheet.csv
+extracting EEM data from files
+[1] "Good. All SEM files exist."
+Absorbance (ABS) files detected, reading absorbance data
+calculating Raman Areas
+performing Inner Filter Correction
+performing Raman scaling
+performing Rayleigh scatter subtraction
+writing out cleaned EEM files to directory processed_data > processed_matrices
+calculating indices
+index calculated:  CobleA
+index calculated:  CobleB
+index calculated:  CobleC
+index calculated:  CobleM
+index calculated:  CobleT
+index calculated:  Fpeak
+index calculated:  Stedmon_D
+index calculated:  Optical_Brighteners
+index calculated:  dieselBandII
+index calculated:  Petroleum
+index calculated:  Lignin
+index calculated:  BIX
+index calculated:  HIX
+index calculated:  FI
+index calculated:  M_to_C
+index calculated:  JP5_empirical
+index calculated:  JP5_normalized
+index calculated:  Diesel_Chen
+writing out indices to processed_data > fDOM_indices_out.csv
+DONE: indices written out to test_fDOM_indices_out.csv
