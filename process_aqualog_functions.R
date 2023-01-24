@@ -166,9 +166,9 @@ organize_aqualog <- function(data_directory,
     
 
   # set up output directory 'processed_data' and write out the complied sample information
-    out_path <- file.path(out_dir,"processed_data")
-    if(!dir.exists(out_path)){
-      dir.create(out_path)
+    proc_dir <- file.path(out_dir,"processed_data")
+    if(!dir.exists(proc_dir)){
+      dir.create(proc_dir)
     }
 
     # write out sample sheet to a CSV file
@@ -208,6 +208,8 @@ correct_EEMs <- function(data_directory,
   # ABS_files = filepaths of ABS files,
   # blank_files = filepaths for blanks
   # groups = group id for each SEM file
+  
+  # TODO: process each blank once, associate blanks w samples
     
   # pull information from sample sheet
     groups = sample_sheet$group
@@ -218,6 +220,8 @@ correct_EEMs <- function(data_directory,
     blank1 = file.path(data_directory, as.character(sample_sheet$blank1))
     blank2 = file.path(data_directory, as.character(sample_sheet$blank2))
     
+    blank1_names = as.character(sample_sheet$blank1)
+    blank2_names = as.character(sample_sheet$blank2)
     sample_names = sample_sheet$sample
     UniqueID = sample_sheet$UniqueID
 
@@ -240,6 +244,9 @@ correct_EEMs <- function(data_directory,
     Sample_EEMs <- lapply(SEM_files, read_SEM) # sample EEM data
     Blank1_EEMs <- lapply(blank1, read_SEM) # blank1 EEM data
     Blank2_EEMs <- lapply(blank2, read_SEM) # blank2 EEM data
+    
+    # check blanks
+    
     
   
   # 1. Read in absorbance data ------
@@ -362,7 +369,12 @@ correct_EEMs <- function(data_directory,
     # subtract the Raman scaled blanks from the Raman scaled samples in the appropriate group
     Sample_EEMs_BlkSub <- lapply(1:N_samples,
                                  function(i) Sample_EEMs_Ram[[i]] - BlankAverages_Ram[[i]])
-  
+    
+    Blank1_BlkSub <- lapply(1:N_samples,
+                              function(i) Blank1_EEMs_Ram[[i]] - BlankAverages_Ram[[i]])
+    Blank2_BlkSub <- lapply(1:N_samples,
+                            function(i) Blank2_EEMs_Ram[[i]] - BlankAverages_Ram[[i]])
+      
     # d) Remove Rayleigh scatter
     writeLines("performing Rayleigh scatter subtraction")
     
@@ -384,8 +396,8 @@ correct_EEMs <- function(data_directory,
     
     # remove Rayleigh scattering from samples and blanks
     Sample_EEMs_Ray <- lapply(Sample_EEMs_BlkSub, Remove_Rayleigh)
-    Blank1_Ray <- lapply(Blank1_EEMs_Ram, Remove_Rayleigh)
-    Blank2_Ray <- lapply(Blank2_EEMs_Ram, Remove_Rayleigh)
+    Blank1_Ray <- lapply(Blank1_BlkSub, Remove_Rayleigh)
+    Blank2_Ray <- lapply(Blank2_BlkSub, Remove_Rayleigh)
     
     # e) Crop out scattering regions.
     
@@ -478,24 +490,40 @@ correct_EEMs <- function(data_directory,
     
     
     # write out
-    out_path = file.path(out_dir, "processed_data", "processed_matrices")
+    proc_dir   = file.path(out_dir, "processed_data")
+    out_path   = file.path(proc_dir, "processed_matrices")
+    blank_path = file.path(proc_dir,"blanks")
   
-    if(!dir.exists(file.path(out_path))){
-      dir.create(file.path(out_path), recursive = T)
-    }
+    unlink(out_path, recursive = T)
+    unlink(blank_path, recursive = T) 
     
+    dir.create(out_path)
+    dir.create(blank_path)
+    
+    # blanks
+    blank1_output_files <- file.path(blank_path, paste(run_name, blank1_names, "clean.csv",sep="_" ))
+    
+    invisible( lapply(1:length(Blank1_Final),
+                      function(i)   write.csv(Blank1_Final[[i]], blank1_output_files[i])))
+    writeLines(unique(paste(blank1_names, round(sapply(Blank1_Final, sum)))), con = file.path(blank_path,"blank_sums.txt"))
+    
+    
+    # samples
     sample_output_files <- file.path(out_path, paste(run_name, names(Sample_EEMs_Final), "clean.csv", sep = "_"))
-    
+
     writeLines("writing out cleaned EEM files to directory processed_data > processed_matrices")
     saveRDS(Sample_EEMs_Final,
             file.path(out_dir,"processed_data", paste0(run_name, "_EEM.rds")))
     
     invisible( lapply(1:N_samples,
-           		function(i)   write.csv(Sample_EEMs_Final[[i]], sample_output_files[i]) ))
+           		function(i)   write.csv(Sample_EEMs_Final[[i]], sample_output_files[i])))
+    
+    
+    
   return(Sample_EEMs_Final)
 }
-  
-  
+
+
 # Calculate indices ----------------------------------
 # This function takes a list of cleaned sample EEMs and calculates various indices for each.
 # These indices include published, single point indices (E.g. Coble A,B,C,M,T).
@@ -645,21 +673,32 @@ fdom_indices <- function(Sample_EEMs,
 }
 
 # Main function process_aqualog() wraps up the three modules above
+# If a sample organization sheet has already been created that indicates filenames, blank files, etc. 
+# that custom ordering can be indicated using the org_file variable.
 process_aqualog <- function(data_directory,
                             run_name,
+                            org_file = NULL,
                             sample_key_file,
                             out_dir = data_directory){
+  
   logtime <- format(Sys.time(), "%Y%m%d_%H:%M:%S")
   log_file = file.path(out_dir, paste0(run_name,"_",logtime,".log"))
-  sink(log_file)
   
-  org <- organize_aqualog(data_directory = data_directory,
+  sink(log_file)
+  on.exit(sink(file = NULL))
+  
+  
+  if(is.null(org_file)){
+    org <- organize_aqualog(data_directory = data_directory,
                           run_name = run_name,
                           sample_key_file = sample_key_file,
                           out_dir = out_dir)
+  }else{
+    org <- read.csv(file.path(data_directory, org_file), header = T, stringsAsFactors = F)
+  }
   
-  corrected_eems <- correct_EEMs(
-                                 data_directory = data_directory,
+  
+  corrected_eems <- correct_EEMs(data_directory = data_directory,
                                  sample_sheet = org,
                                  run_name = run_name,
                                  out_dir = out_dir)
@@ -678,6 +717,24 @@ process_aqualog <- function(data_directory,
 }
   
 # Compile data across runs --------------------------
+
+# helper function for reading flat eem matrices from directory
+# by default, looks for naming pattern "clean.csv" to identify eem files
+# assumes file is a csv with a header
+# returns a list of matrices named with the filenames
+
+read_eems = function(eem_dir, pattern = "clean.csv"){
+  eem_files = list.files(eem_dir)
+  eem_files = eem_files[grepl(pattern,eem_files)]
+  
+  run_eems = lapply(eem_files, function(x){
+    read.csv(file.path(eem_dir, x), header = T, stringsAsFactors = F)
+  })
+  
+  names(run_eems) = eem_files
+  return(run_eems)
+}
+
 
 # read_processed_data() reads in the processed data from a run.
 # it also double checks that run sheets match the data files.
@@ -706,18 +763,16 @@ read_processed_data = function(run_out_dir){
       paste(run_indices$UniqueID[!(run_indices$UniqueID %in% sample_sheet$nelson_lab_id)])
     )
   }
+
   
-  # processed EEM matrices
-  eem_dir   = file.path(proc_data, "processed_matrices")
-  eem_files = list.files(eem_dir)
-  
-  run_eems = lapply(eem_files, function(x){
-    read.csv(file.path(eem_dir, x), header = T, stringsAsFactors = F)})
-  
-  eem_samples = gsub(".+(Group.+)_.+", "\\1", eem_files)
-  eem_uniqID = run_sheet$UniqueID[match(eem_samples, run_sheet$sample)]
-  
+  # sample EEMs
+  run_eems = read_eems(eem_dir = file.path(proc_data, "processed_matrices"))
+  eem_samples = gsub(".+(Group.+)_.+", "\\1", names(run_eems))
+  eem_uniqID  = run_sheet$UniqueID[match(eem_samples, run_sheet$sample)]
   names(run_eems) = eem_uniqID
+  
+  # processed blank EEMs
+  run_blanks = read_eems(eem_dir = file.path(proc_data,"blanks"))
   
   # run checks
   n_samples = list(sheet = nrow(run_sheet),
@@ -731,14 +786,19 @@ read_processed_data = function(run_out_dir){
                     "for run", unique(run_sheet$run_name)))
   
   if(length(unique(n_samples)) != 1) stop(
-    paste("Sample N mismatch in run ",run_out_dir, paste(n_samples, collapse = " "))
+    paste("Sample N mismatch in run ",
+          run_out_dir,
+          paste(names(n_samples),
+                n_samples,
+                collapse = " "))
     )
   
   
   #output sample sheet, indices, eems
   out = list(samples = run_sheet,
              indices = run_indices,
-             eems = run_eems)
+             eems = run_eems,
+             blanks = run_blanks)
   return(out)
 }
 
@@ -777,6 +837,12 @@ compile_runs <- function(run_dirs,
   all_eems = do.call("rbind", run_eems)
   all_eems$UniqueID = gsub("\\..+","",row.names(all_eems))
   
+  # blanks
+  run_blanks = lapply(processed_runs, function(x) x$blanks)
+  run_blanks = unlist(run_blanks, recursive = F)
+  
+  blank_sums = sapply(run_dirs, function(x) read.table(file.path(x,"processed_data","blanks","blank_sums.txt")))
+  
   # write out
   if(!dir.exists(out_dir)){
     dir.create(out_dir)
@@ -784,9 +850,11 @@ compile_runs <- function(run_dirs,
   
   write.csv(all_samples, file.path(out_dir,"all_sample_indices.csv"), row.names = F)
   write.csv(all_eems, file.path(out_dir,"all_sample_processed_EEMs.csv"), row.names = F)
-
+  write.csv(blank_sums, file.path(out_dir,"all_blank_sums.csv"))
+             
   saveRDS(run_eems, file.path(out_dir,"EEMs.rds"))
-  
+  saveRDS(run_blanks, file.path(out_dir, "blanks.rds"))
+
   return(list(indices = all_samples,
               eems = run_eems))
 }
