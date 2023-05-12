@@ -10,12 +10,12 @@ require(viridisLite)
 # Fluorescence = fluorescence measurement
 # sample_name = character string name for plot tile
 
-plot_eem <- function(eem, sample_name=NULL, contour = T, color_breaks = NULL){
+plot_eem <- function(eem, sample_name=NULL, contour = T, color_breaks = NULL, rows_as_names = F){
   
   require(data.table)
   
   # long format
-  eem_dt <- as.data.table(eem, keep.rownames=F)
+  eem_dt <- as.data.table(eem, keep.rownames = rows_as_names)
   names(eem_dt)[1] <- "em"
   eem_long <- suppressWarnings(melt.data.table(eem_dt, id.vars = "em", variable.factor = F))
   names(eem_long) <- c("em","ex","Value")

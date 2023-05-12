@@ -202,7 +202,8 @@ organize_aqualog <- function(data_directory,
 correct_EEMs <- function(data_directory, 
                          sample_sheet,
                          run_name,
-                         out_dir = data_directory){
+                         out_dir = data_directory,
+                         blank_subtract = T){
   
   # SEM_files = filepaths for raw Aqualog SEM files
   # ABS_files = filepaths of ABS files,
@@ -363,18 +364,25 @@ correct_EEMs <- function(data_directory,
                          function(i) Blank2_EEMs[[i]] / BlankRamanAreas[[i]])
   
     # c) Subtract Blanks (Raman Scaling of blanks by average)
-    # divide the averaged blanks by their Raman area, then subtract that from the samples in each group
-    BlankAverages_Ram <- lapply(1:N_samples,
-                                function(i) BlankAverages[[i]] / BlankRamanAreas[[i]] )
-    # subtract the Raman scaled blanks from the Raman scaled samples in the appropriate group
-    Sample_EEMs_BlkSub <- lapply(1:N_samples,
-                                 function(i) Sample_EEMs_Ram[[i]] - BlankAverages_Ram[[i]])
-    
-    Blank1_BlkSub <- lapply(1:N_samples,
-                              function(i) Blank1_EEMs_Ram[[i]] - BlankAverages_Ram[[i]])
-    Blank2_BlkSub <- lapply(1:N_samples,
-                            function(i) Blank2_EEMs_Ram[[i]] - BlankAverages_Ram[[i]])
+    if(isTRUE(blank_subtract)){
+      # divide the averaged blanks by their Raman area, then subtract that from the samples in each group
+      BlankAverages_Ram <- lapply(1:N_samples,
+                                  function(i) BlankAverages[[i]] / BlankRamanAreas[[i]] )
+      # subtract the Raman scaled blanks from the Raman scaled samples in the appropriate group
+      Sample_EEMs_BlkSub <- lapply(1:N_samples,
+                                   function(i) Sample_EEMs_Ram[[i]] - BlankAverages_Ram[[i]])
       
+      Blank1_BlkSub <- lapply(1:N_samples,
+                              function(i) Blank1_EEMs_Ram[[i]] - Blank2_EEMs_Ram[[i]])
+      Blank2_BlkSub <- lapply(1:N_samples,
+                              function(i) Blank2_EEMs_Ram[[i]] - Blank1_EEMs_Ram[[i]])
+    }else{
+      # skip blank subtraction (e.g. for diagnosing blank issues)
+      Sample_EEMs_BlkSub <- Sample_EEMs_Ram
+      Blank1_BlkSub <- Blank1_EEMs_Ram
+      Blank2_BlkSub <- Blank2_EEMs_Ram
+      
+    }
     # d) Remove Rayleigh scatter
     writeLines("performing Rayleigh scatter subtraction")
     
@@ -493,12 +501,14 @@ correct_EEMs <- function(data_directory,
     proc_dir   = file.path(out_dir, "processed_data")
     out_path   = file.path(proc_dir, "processed_matrices")
     blank_path = file.path(proc_dir,"blanks")
-  
-    unlink(out_path, recursive = T)
-    unlink(blank_path, recursive = T) 
     
-    dir.create(out_path)
-    dir.create(blank_path)
+    if(!dir.exists(out_path)){
+      dir.create(out_path, recursive = T)
+    }
+    
+    if(!dir.exists(blank_path)){
+      dir.create(blank_path)
+    }
     
     # blanks
     blank1_output_files <- file.path(blank_path, paste(run_name, blank1_names, "clean.csv",sep="_" ))
