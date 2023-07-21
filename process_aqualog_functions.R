@@ -3,6 +3,8 @@
   # this script is executable from the command line. Tested on linux. 
 
 # Set Global Parameters --------------------------
+library(eemR)
+library(dplyr)
 
 # Aqualog parameters
 # by default, in the aqualog output file the x-axis is emission, y-axis is excitation
@@ -39,6 +41,65 @@ params = c(Slitwidth = Slitwidth,
 
 print("Aqualog Parameters")
 writeLines(paste(names(params),params, sep = "\n"))
+
+# Check Blanks -------------------
+
+# check_blanks() imports blanks from each group, removes scattering, and plots the blank EEM. 
+  # plots are returned as a list and are written out to a pdf file
+  # this function uses the package eemR for scatter removal and plotting.
+
+# blank checks
+check_blanks = function(run_name,
+                        data_directory,
+                        out_dir) {
+  require(eemR)
+  # organize data files
+  all_files = list.files(data_directory, full.names = T)
+  
+  BEMs = all_files[grepl("BEM", all_files)]
+  
+  BEM_dir = file.path(out_dir,"BEM")
+  
+  dir.create(BEM_dir, showWarnings = F)
+  file.copy(BEMs, BEM_dir, overwrite = T)
+  
+  # read in BEM files (blank data)
+  blanks = eem_read(file = BEM_dir,
+                    recursive = T,
+                    import_function = "aqualog")
+  
+  group_blanks = eem_extract(blanks,
+                             sample = "Sample0001",
+                             keep = T)
+  
+  print(paste("Number of Blank groups =", length(group_blanks)))
+  
+  # remove scattering from blanks
+  blanks_no_scat = eem_remove_scattering(group_blanks, "rayleigh", 1, 11) %>%
+    eem_remove_scattering("rayleigh", 2, 11) %>%
+    eem_remove_scattering("raman", 1, 11) %>%
+    eem_remove_scattering("raman", 2, 11)
+  
+  
+  
+  # write to PDF
+  outfile = paste0("blanks_", run_name,".pdf")
+  
+  print(paste("writing blank plots to file", outfile))
+  
+  blank_plots = list()
+  
+  pdf(file = file.path(out_dir, outfile),
+      width = 10,
+      height = 8)
+  for (i in 1:length(blanks_no_scat)) {
+    blank_plots[[i]] = plot(blanks_no_scat, which = i)
+  }
+  dev.off()
+  
+  # return plots as list
+  return(blank_plots)
+}
 
 # Data file organization --------------
   
@@ -580,7 +641,7 @@ fdom_indices <- function(Sample_EEMs,
                   
                   Fpeak = c(299,240),
                   Stedmon_D = c(509,390),
-                  Optical_Brighteners = c(435,360),
+                  Optical_Brighteners = c(360, 435),
                   dieselBandII = c(510,410),
                   Petroleum = c(510,270),
                   Lignin = c(360,240)
@@ -682,6 +743,7 @@ fdom_indices <- function(Sample_EEMs,
     return(indices_dat)
 }
 
+# Process Aqualog -----------
 # Main function process_aqualog() wraps up the three modules above
 # If a sample organization sheet has already been created that indicates filenames, blank files, etc. 
 # that custom ordering can be indicated using the org_file variable.
@@ -691,13 +753,14 @@ process_aqualog <- function(data_directory,
                             sample_key_file,
                             out_dir = data_directory){
   
+  # start log
   logtime <- format(Sys.time(), "%Y%m%d_%H:%M:%S")
   log_file = file.path(out_dir, paste0(run_name,"_",logtime,".log"))
   
   sink(log_file)
   on.exit(sink(file = NULL))
   
-  
+  # generate file organization map if needed
   if(is.null(org_file)){
     org <- organize_aqualog(data_directory = data_directory,
                           run_name = run_name,
@@ -707,23 +770,30 @@ process_aqualog <- function(data_directory,
     org <- read.csv(file.path(data_directory, org_file), header = T, stringsAsFactors = F)
   }
   
-  
+  # process eems
   corrected_eems <- correct_EEMs(data_directory = data_directory,
                                  sample_sheet = org,
                                  run_name = run_name,
                                  out_dir = out_dir)
-  
+  # calculate indices
   inds <- fdom_indices(corrected_eems,
                        sample_sheet = org,
                        run_name = run_name,
                        out_dir = out_dir)
+  # check blanks
+  blanks <- check_blanks(run_name = run_name,
+                         data_directory = data_directory,
+                         out_dir = out_dir)
+                         
+                         
   sink()
   
   print(readLines(log_file))
   
   return(list(sample_sheet = org, 
               EEMs = corrected_eems,
-              indices = inds))
+              indices = inds,
+              blanks = blanks))
 }
   
 # Compile data across runs --------------------------
