@@ -89,7 +89,7 @@ check_blanks = function(run_name,
   
   blank_plots = list()
   
-  pdf(file = file.path(out_dir, outfile),
+  pdf(file = file.path(out_dir,"processed_data", outfile),
       width = 10,
       height = 8)
   for (i in 1:length(blanks_no_scat)) {
