@@ -31,7 +31,7 @@ plot_eem <- function(eem, sample_name=NULL, contour = T, color_breaks = NULL, ro
                                   labels = color_breaks[-1])] 
     
   # uniform scale plot
-    p = ggplot(eem_long, aes(y = em,
+    p = ggplot(eem_long, aes(y = as.numeric(em),
                              x = ex,
                              color = color_group,
                              fill = color_group,
@@ -49,7 +49,7 @@ plot_eem <- function(eem, sample_name=NULL, contour = T, color_breaks = NULL, ro
  }else{
   
   # create free-scale plot
-  p = ggplot(eem_long, aes(y = em,
+  p = ggplot(eem_long, aes(y = as.numeric(em),
                            x = ex,
                            color = Value,
                            fill = Value,

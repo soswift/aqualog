@@ -837,19 +837,27 @@ read_processed_data = function(run_out_dir){
   run_indices = read.csv(indices_path, header = T, stringsAsFactors = F)
   
   if(!any(run_indices$UniqueID %in% sample_sheet$UniqueID)){
-    stop(
-      paste("ERROR Samples in indices don't match run sample sheet", run_out_dir),
-      " Samples: ",
+    warning(
+      paste("WARNING Samples in indices don't match run sample sheet", run_out_dir),
+      " Samples will be dropped: ",
       paste(run_indices$UniqueID[!(run_indices$UniqueID %in% sample_sheet$nelson_lab_id)])
     )
+    
+    run_sheet = run_sheet[run_sheet$UniqueID %in% sample_sheet_nelson_lab_id,]
+    run_indices = run_indices[run_sheet$uniqueID %in% sample_sheet_nelson_lab_id]
   }
 
   
   # sample EEMs
   run_eems = read_eems(eem_dir = file.path(proc_data, "processed_matrices"))
+  
   eem_samples = gsub(".+(Group.+)_.+", "\\1", names(run_eems))
-  eem_uniqID  = run_sheet$UniqueID[match(eem_samples, run_sheet$sample)]
-  names(run_eems) = eem_uniqID
+  eems_in_master_sheet = match(run_sheet$sample, eem_samples)
+
+  run_eems = run_eems[eems_in_master_sheet]
+  
+  names(run_eems) = run_sheet$UniqueID
+
   
   # processed blank EEMs
   run_blanks = read_eems(eem_dir = file.path(proc_data,"blanks"))
@@ -865,7 +873,7 @@ read_processed_data = function(run_out_dir){
                     "eems = ", n_samples$eems,
                     "for run", unique(run_sheet$run_name)))
   
-  if(length(unique(n_samples)) != 1) stop(
+  if(length(unique(n_samples)) != 1) warning(
     paste("Sample N mismatch in run ",
           run_out_dir,
           paste(names(n_samples),
@@ -902,13 +910,13 @@ compile_runs <- function(run_dirs,
   dupd_sams = duplicated(compiled_indices$UniqueID)
   if(any(dupd_sams)){
     stop( paste("ERROR duplicated UniqueID:",
-                compiled_indices$UniqueID[dupd_sams],
-                compiled_indices$run_name)
+                paste(compiled_indices$UniqueID[dupd_sams],
+                      collapse = ", "))
     )
   }
   
   # sample metadata
-  all_samples = merge(sample_sheet, compiled_indices, by = "UniqueID", all.y = T,)
+  all_samples = merge(sample_sheet, compiled_indices, by = "UniqueID", all.y = T)
   if(nrow(compiled_indices) != nrow(all_samples)) stop("ERROR sample indices merge error")
   
   # EEM matrices
