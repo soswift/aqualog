@@ -89,7 +89,7 @@ check_blanks = function(run_name,
   
   blank_plots = list()
   
-  pdf(file = file.path(out_dir, outfile),
+  pdf(file = file.path(out_dir,"processed_data", outfile),
       width = 10,
       height = 8)
   for (i in 1:length(blanks_no_scat)) {
@@ -626,7 +626,7 @@ fdom_indices <- function(Sample_EEMs,
   
   
   # List emission and excitation values of each index
-  # simple indeces can be defined as a vector of c(emission value, excitation value)
+  # simple indices can be defined as a vector of c(emission value, excitation value)
   # more complicated indices relate multiple emission/excitation values to each other
 
    
@@ -641,7 +641,7 @@ fdom_indices <- function(Sample_EEMs,
                   
                   Fpeak = c(299,240),
                   Stedmon_D = c(509,390),
-                  Optical_Brighteners = c(360, 435),
+                  Optical_Brighteners = c(435, 360),
                   dieselBandII = c(510,410),
                   Petroleum = c(510,270),
                   Lignin = c(360,240)
